@@ -1,0 +1,54 @@
+
+.hover_squeeze{position: relative;}
+.hover_squeeze .block_media {
+	z-index: 10;
+	-webkit-transition: -webkit-transform 0.4s;
+	-moz-transition: -moz-transform 0.4s;
+	transition: transform 0.4s;
+}
+.hover_squeeze span.amount,
+.hover_squeeze select.pricing{
+	margin-top:15px;
+	float:right;
+}
+.no-touch .hover_squeeze:hover .block_media,
+.hover_squeeze.cs_hover .block_media {
+	-webkit-transform: scale(0.001);
+	-moz-transform: scale(0.001);
+	-ms-transform: scale(0.001);
+	transform: scale(0.001);
+}
+.hover_squeeze .instructor_course .item-avatar{
+  max-width: 32px;
+  float: left;
+  margin-right: 10px;
+  border-radius:50%;
+  overflow:hidden;
+}
+.hover_squeeze .block_content {
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	background:#efefef;
+	padding:15px;
+	position: absolute;left:0;top:0;
+	-webkit-transform: scale(0.7);
+	-moz-transform: scale(0.7);
+	-ms-transform: scale(0.7);
+	transform: scale(0.7);
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transition: -webkit-transform 0.4s, opacity 0.4s;
+	-moz-transition: -moz-transform 0.4s, opacity 0.4s;
+	transition: transform 0.4s, opacity 0.4s;
+}
+
+.no-touch .hover_squeeze:hover .block_content,
+.hover_squeeze.cs-hover .block_content{
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
