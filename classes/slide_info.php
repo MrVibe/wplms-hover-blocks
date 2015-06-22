@@ -1,8 +1,8 @@
 <?php
 
-if(!class_exists('WPLMS_HoverBlock_Plugin_Class'))
+if(!class_exists('wplms_slide_info'))
 {   
-    class WPLMS_HoverBlock_Plugin_Class  // We'll use this just to avoid function name conflicts 
+    class wplms_slide_info  // We'll use this just to avoid function name conflicts 
     {
             
         public function __construct(){   
@@ -86,5 +86,4 @@ if(!class_exists('WPLMS_HoverBlock_Plugin_Class'))
     } // END class WPLMS_HoverBlock_Plugin_Class
 } // END if(!class_exists('WPLMS_HoverBlock_Plugin_Class'))
 
-new  WPLMS_HoverBlock_Plugin_Class;
 ?>
