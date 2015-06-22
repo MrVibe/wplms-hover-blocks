@@ -10,9 +10,10 @@ if(!class_exists('wplms_slide_info'))
  		add_filter('vibe_builder_thumb_styles',array($this,'custom_vibe_builder_thumb_styles'));
     	add_filter('vibe_featured_thumbnail_style',array($this,'hover_vibe_featured_thumbnail_style'),10,3);
       	add_action('wplms_customizer_custom_css',array($this,'customize_color'),10,1);
+
         } // END public function __construct
         function custom_vibe_builder_thumb_styles($thumb_array){
-            $thumb_array['slide_info']= 'http://localhost/wplms/wp-content/plugins/wplms-hover-blocks/images/hover_img.jpg';
+            $thumb_array['slide_info']= plugins_url( 'images/slide_info.jpg', dirname(__FILE__) );
             return $thumb_array;
         }
         function hover_vibe_featured_thumbnail_style($thumbnail_html,$post,$style){

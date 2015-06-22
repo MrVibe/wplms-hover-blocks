@@ -35,15 +35,15 @@
 
 .no-touch .block.slide_info:hover .block_media,
 .block.slide_info.cs-hover .block_media{
-	-webkit-transform: translateX(25%);
-	-moz-transform: translateX(25%);
-	-ms-transform: translateX(25%);
-	transform: translateX(25%);
+	-webkit-transform: translateX(50%);
+	-moz-transform: translateX(50%);
+	-ms-transform: translateX(50%);
+	transform: translateX(50%);
 }
 
 .block.slide_info .block_content {
 	height: 100%;
-	width: 60%;
+	width: 52%;
 	opacity: 0;
 	position: absolute;
 	top: 0;

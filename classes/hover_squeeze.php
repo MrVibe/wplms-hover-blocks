@@ -17,7 +17,7 @@ if(!class_exists('wplms_hover_squeeze')){
 		}
 
 		function custom_vibe_builder_thumb_styles_hover($thumb_array){
-			$thumb_array['hover_squeeze']= plugins_url( '../images/hover_squeeze.png', dirname(__FILE__) );
+			$thumb_array['hover_squeeze']= plugins_url( 'images/hover_squeeze.png', dirname(__FILE__) );
 		    return $thumb_array;
 		}
 
