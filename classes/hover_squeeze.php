@@ -8,6 +8,7 @@ if(!class_exists('wplms_hover_squeeze')){
     		add_action('wp_enqueue_scripts',array($this,'wplms_customizer_custom_cssjs'));
     		add_filter('vibe_builder_thumb_styles',array($this,'custom_vibe_builder_thumb_styles_hover'));
 			add_filter('vibe_featured_thumbnail_style',array($this,'custom_vibe_featured_thumbnail_style'),10,3);
+            add_action('wplms_customizer_custom_css',array($this,'customize_color'),10,1);
     	}
 
     	function wplms_customizer_custom_cssjs(){
@@ -73,6 +74,13 @@ if(!class_exists('wplms_hover_squeeze')){
 		    }
 		    return $thumbnail_html;
 		}
+
+
+        function customize_color($customizer){
+            if(isset($customizer['single_dark_color'])){
+              echo '.block.hover_squeeze .block_content{background: '.$customizer['single_dark_color'].' !important;}';
+            }
+        }
 
 	}
 }
