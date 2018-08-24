@@ -122,3 +122,4 @@
 	opacity: 1;
 }
 
+.block.hover_squeeze .block_content {position:absolute}

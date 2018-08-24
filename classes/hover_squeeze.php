@@ -4,11 +4,11 @@ if(!class_exists('wplms_hover_squeeze')){
     class wplms_hover_squeeze  // We'll use this just to avoid function name conflicts 
     {
     	public function __construct(){
-    		do_action('wplms_customizer_custom_css',$theme_customizer); 
+    		
     		add_action('wp_enqueue_scripts',array($this,'wplms_customizer_custom_cssjs'));
     		add_filter('vibe_builder_thumb_styles',array($this,'custom_vibe_builder_thumb_styles_hover'));
 			add_filter('vibe_featured_thumbnail_style',array($this,'custom_vibe_featured_thumbnail_style'),10,3);
-            add_action('wplms_customizer_custom_css',array($this,'customize_color'),10,1);
+            add_action('wp_head',array($this,'customize_color'),10,1);
     	}
 
     	function wplms_customizer_custom_cssjs(){
@@ -34,19 +34,23 @@ if(!class_exists('wplms_hover_squeeze')){
                         $rating=get_post_meta($post->ID,'average_rating',true);
                         $rating_count=get_post_meta($post->ID,'rating_count',true);
                         $meta = '<div class="star-rating">';
-                        for($i=1;$i<=5;$i++){
+                        if(function_exists('bp_course_display_rating')){
+                           $meta .= bp_course_display_rating($rating);
+                        }else{
+                            for($i=1;$i<=5;$i++){
 
-                            if(isset($rating)){
-                                if($rating >= 1){
-                                    $meta .='<span class="fill"></span>';
-                                }elseif(($rating < 1 ) && ($rating > 0.4 ) ){
-                                    $meta .= '<span class="half"></span>';
+                                if(isset($rating)){
+                                    if($rating >= 1){
+                                        $meta .='<span class="fill"></span>';
+                                    }elseif(($rating < 1 ) && ($rating > 0.4 ) ){
+                                        $meta .= '<span class="half"></span>';
+                                    }else{
+                                        $meta .='<span></span>';
+                                    }
+                                    $rating--;
                                 }else{
                                     $meta .='<span></span>';
                                 }
-                                $rating--;
-                            }else{
-                                $meta .='<span></span>';
                             }
                         }
                         $meta =  apply_filters('vibe_thumb_rating',$meta,$featured_style,$rating);
@@ -60,14 +64,14 @@ if(!class_exists('wplms_hover_squeeze')){
                         $meta .='<span class="clear"></span>';
 
                         
-                        $instructor_meta='';
-                        if(function_exists('bp_course_get_instructor'))
-                            $instructor_meta .= bp_course_get_instructor();
+                        
                         
                         $meta .= apply_filters('vibe_thumb_instructor_meta',$instructor_meta,$featured_style);
-                        $meta .= bp_course_get_course_credits(array('id'=>$post->ID));
-
-                        $thumbnail_html .= $meta;
+                        $meta .= '<br>'.bp_course_get_course_credits(array('id'=>$post->ID));
+                        $instructor_meta='';
+                        if(function_exists('bp_course_get_instructor'))
+                            $instructor_meta .= '<br>'.bp_course_get_instructor();
+                        $thumbnail_html .= '<br>'.$meta;
                 }
 		        $thumbnail_html .= '</div>';
 		        $thumbnail_html .= '</div>';
@@ -77,8 +81,10 @@ if(!class_exists('wplms_hover_squeeze')){
 
 
         function customize_color($customizer){
-            if(isset($customizer['single_dark_color'])){
-              echo '.block.hover_squeeze .block_content{background: '.$customizer['single_dark_color'].' !important;}';
+            $customizer = vibe_get_option('vibe_customizer');
+            
+            if(isset($customizer['primary_bg'])){
+              echo '.block.hover_squeeze .block_content{background: '.$customizer['primary_bg'].' !important;}';
             }
         }
 
