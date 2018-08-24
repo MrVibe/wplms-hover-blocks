@@ -64,13 +64,13 @@ if(!class_exists('wplms_hover_squeeze')){
                         $meta .='<span class="clear"></span>';
 
                         
-                        
+                        $instructor_meta='';
+                        if(function_exists('bp_course_get_instructor'))
+                            $instructor_meta .= bp_course_get_instructor();
                         
                         $meta .= apply_filters('vibe_thumb_instructor_meta',$instructor_meta,$featured_style);
                         $meta .= '<br>'.bp_course_get_course_credits(array('id'=>$post->ID));
-                        $instructor_meta='';
-                        if(function_exists('bp_course_get_instructor'))
-                            $instructor_meta .= '<br>'.bp_course_get_instructor();
+
                         $thumbnail_html .= '<br>'.$meta;
                 }
 		        $thumbnail_html .= '</div>';
